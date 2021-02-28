@@ -23,14 +23,15 @@ class Mediator(Process):
         except Exception:
             print('Failed to parse json')
         else:
-            print('Received:,' obj)
+            print('Received:', obj)
             self.receiver.put(data)
         
 
     def run(self):
         while network.isConnected():
-            if self.sender.empty():
+            if not self.sender.empty():
                 data = self.empty.get()
+                print('Sending:', data)
                 network.say(json.dumps(data))
             
         

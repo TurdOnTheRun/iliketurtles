@@ -15,7 +15,7 @@ class Executer():
         self.receiver = Queue()
         self.sender = Queue()
         self.mediator = Mediator(self.receiver, self.sender)
-        self.start()
+        self.mediator.start()
         rospy.init_node('executer', anonymous=False)
         rospy.on_shutdown(self.shutdown)
         self.rate = rospy.Rate(5)
